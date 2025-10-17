@@ -1,0 +1,25 @@
+Fuente: MySQL
+Filas: 8,641
+Periodo: 2025-09-01 00:00:00 -> 2025-09-07 00:00:00
+
+Nulos por columna (numéricas y fecha):
+fecha_hora                               0
+concentracion_mp_mg_m3                   0
+concentracion_mp_sin_corregir_mg_nm3     0
+concentracion_mp_mg_nm3                  0
+oxigeno_porcentaje_base_seca             0
+humedad_porcentaje                       0
+concentracion_co2_porcentaje             0
+concentracion_co2_sin_corregir_mg_nm3    0
+temperatura_gases_salida_c               0
+presion_gases_salida_atm                 0
+flujo_gases_salida_base_humeda_m3_min    0
+flujo_gases_salida_base_seca_nm3_min     0
+
+Primeras filas:
+      id          fecha_hora  concentracion_mp_mg_m3  concentracion_mp_sin_corregir_mg_nm3  concentracion_mp_mg_nm3  oxigeno_porcentaje_base_seca  humedad_porcentaje  concentracion_co2_porcentaje  concentracion_co2_sin_corregir_mg_nm3  temperatura_gases_salida_c  presion_gases_salida_atm  flujo_gases_salida_base_humeda_m3_min  flujo_gases_salida_base_seca_nm3_min tipo_combustible combustible estado_fuente
+0  38881 2025-09-01 00:00:00                 181.089                               335.373                  345.424                         8.415              12.547                        12.343                                130.799                     143.127                     0.984                               2133.115                              1263.614             None        None          None
+1  38882 2025-09-01 00:01:00                 382.750                               322.781                  478.295                         7.192              12.016                        11.869                                145.859                     142.634                     0.983                               2134.115                              1294.675             None        None          None
+2  38883 2025-09-01 00:02:00                 306.198                               362.319                  369.897                         8.236              13.941                        10.405                                143.433                     145.455                     0.980                               2164.592                              1315.456             None        None          None
+3  38884 2025-09-01 00:03:00                 259.530                               298.809                  413.162                         8.419              13.649                        12.335                                147.652                     142.216                     0.978                               2110.462                              1295.916             None        None          None
+4  38885 2025-09-01 00:04:00                 104.607                               112.825                  246.724                         8.387              13.231                         8.591                                157.609                     141.377                     0.979                               2105.594                              1346.280             None        None          None

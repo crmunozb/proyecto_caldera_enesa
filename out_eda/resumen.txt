@@ -1,0 +1,25 @@
+Archivo: mediciones_agosto.csv
+Filas: 17,280
+Periodo: 2025-01-08 00:00:00 -> 2025-12-08 23:59:00
+
+Nulos por columna (numéricas y fecha):
+fecha_hora                                   0
+concentracion_mp_mg_m3                       0
+concentracion_mp_sin_corregir_mg_nm3         0
+concentracion_mp_mg_nm3                      0
+oxigeno_porcentaje_base_seca                 0
+humedad_porcentaje                           0
+concentracion_co2_porcentaje             17280
+concentracion_co2_sin_corregir_mg_nm3    17280
+temperatura_gases_salida_c                   0
+presion_gases_salida_atm                     0
+flujo_gases_salida_base_humeda_m3_min        0
+flujo_gases_salida_base_seca_nm3_min         0
+
+Primeras filas:
+           fecha_hora  concentracion_mp_mg_m3  concentracion_mp_sin_corregir_mg_nm3  concentracion_mp_mg_nm3  oxigeno_porcentaje_base_seca  humedad_porcentaje  concentracion_co2_porcentaje  concentracion_co2_sin_corregir_mg_nm3  temperatura_gases_salida_c  presion_gases_salida_atm  flujo_gases_salida_base_humeda_m3_min  flujo_gases_salida_base_seca_nm3_min tipo_combustible combustible estado_fuente
+0 2025-01-08 00:00:00                 170.057                               284.251                  307.989                         7.148              13.428                           NaN                                    NaN                     149.365                     0.979                               2125.956                              1271.882           SOLIDO     BIOMASA     OPERACION
+1 2025-01-08 00:01:00                 128.711                               215.864                  228.797                         6.842              13.686                           NaN                                    NaN                     149.573                     0.979                               2184.730                              1302.666           SOLIDO     BIOMASA     OPERACION
+2 2025-01-08 00:02:00                 101.613                               170.486                  180.161                         6.800              13.721                           NaN                                    NaN                     149.608                     0.979                               2149.192                              1280.960           SOLIDO     BIOMASA     OPERACION
+3 2025-01-08 00:03:00                  59.792                                99.896                  109.015                         7.246              13.345                           NaN                                    NaN                     149.705                     0.979                               2147.167                              1285.171           SOLIDO     BIOMASA     OPERACION
+4 2025-01-08 00:04:00                  82.514                               137.492                  152.817                         7.494              13.135                           NaN                                    NaN                     149.636                     0.979                               2152.245                              1291.641           SOLIDO     BIOMASA     OPERACION
