@@ -1,5 +1,24 @@
+# Entorno virtual
 venv/
+
+# Cachés de Python
 __pycache__/
 *.pyc
+
+# Resultados generados (se pueden volver a crear)
 gan/out_gan/
 gan/out_gan_eval/
+out_db/
+out_eda/
+
+# Archivos temporales de Office
+~$*.xlsx
+~$*.xlsm
+
+# Locks de LibreOffice
+.~lock.*
+
+# Si NO quieres subir datos crudos grandes, descomenta:
+# *.csv
+# *.xlsx
+# *.xlsm
