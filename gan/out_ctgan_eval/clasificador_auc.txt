@@ -1,0 +1,1 @@
+AUC real vs fake: 0.999
