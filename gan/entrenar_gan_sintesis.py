@@ -16,7 +16,7 @@ from gan_modelo import Generator, Discriminator
 
 LATENT_DIM = 32
 BATCH_SIZE = 128
-EPOCHS = 300
+EPOCHS = 300   # si ves que sigue corto, puedes subir a 600–1000
 LR = 2e-4
 
 
@@ -27,17 +27,18 @@ def main():
     dataset = TensorDataset(data)
     loader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, drop_last=True)
 
-    device = torch.device("cpu")
-    print("Entrenando GAN usando CPU")
-
+    device = torch.device("cpu")  # si tienes GPU: torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print("Entrenando GAN usando", device)
 
     data_dim = data.shape[1]
     G = Generator(latent_dim=LATENT_DIM, data_dim=data_dim).to(device)
     D = Discriminator(data_dim=data_dim).to(device)
 
     criterion = nn.BCEWithLogitsLoss()
-    opt_G = optim.Adam(G.parameters(), lr=LR)
-    opt_D = optim.Adam(D.parameters(), lr=LR)
+
+    # Betas típicas en GAN para Adam
+    opt_G = optim.Adam(G.parameters(), lr=LR, betas=(0.5, 0.999))
+    opt_D = optim.Adam(D.parameters(), lr=LR, betas=(0.5, 0.999))
 
     out_dir = Path(__file__).resolve().parent / "out_gan"
     out_dir.mkdir(exist_ok=True)
@@ -47,15 +48,18 @@ def main():
             real_batch = real_batch.to(device)
             batch_size = real_batch.size(0)
 
-            real_labels = torch.ones(batch_size, 1, device=device)
+            # Label smoothing para reales (0.9 en vez de 1.0)
+            real_labels = torch.full((batch_size, 1), 0.9, device=device)
             fake_labels = torch.zeros(batch_size, 1, device=device)
 
             # --- Entrenar D ---
             opt_D.zero_grad()
 
+            # Reales
             preds_real = D(real_batch)
             loss_real = criterion(preds_real, real_labels)
 
+            # Fakes
             z = torch.randn(batch_size, LATENT_DIM, device=device)
             fake_batch = G(z).detach()
             preds_fake = D(fake_batch)
@@ -70,6 +74,7 @@ def main():
             z = torch.randn(batch_size, LATENT_DIM, device=device)
             fake_batch = G(z)
             preds = D(fake_batch)
+            # El generador quiere que D crea que los fakes son reales (0.9)
             loss_G = criterion(preds, real_labels)
             loss_G.backward()
             opt_G.step()

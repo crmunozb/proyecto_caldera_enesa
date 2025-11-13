@@ -12,8 +12,7 @@ import pandas as pd
 from gan_modelo import Generator
 
 LATENT_DIM = 32
-N_MUESTRAS = 10000  # cámbialo si quieres más/menos muestras
-
+N_MUESTRAS = 100000  #cantidad de muestras sintéticas a generar
 
 def main():
     this_dir = Path(__file__).resolve().parent
