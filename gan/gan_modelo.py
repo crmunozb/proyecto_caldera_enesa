@@ -1,10 +1,9 @@
 # gan_modelo.py
 """
-Definición de Generator y Discriminator para datos tabulares.
+Definición de Generator y Discriminator (critic) para datos tabulares.
 
-- El Generator usa BatchNorm para estabilizar el entrenamiento.
-- El Discriminator NO tiene Sigmoid en la salida: devolver logits.
-  -> Usa BCEWithLogitsLoss en el entrenamiento.
+- Generator: más capacidad + BatchNorm para estabilizar entrenamiento.
+- Discriminator: actúa como CRITIC en WGAN-GP (sin Sigmoid, sin BCE).
 """
 
 import torch
@@ -32,20 +31,23 @@ class Generator(nn.Module):
 
 
 class Discriminator(nn.Module):
+    """
+    En WGAN-GP este módulo actúa como CRITIC:
+    - No tiene Sigmoid.
+    - Devuelve un escalar real (logit) por muestra.
+    """
     def __init__(self, data_dim: int = 11):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(data_dim, 128),
             nn.LeakyReLU(0.2),
-            nn.Dropout(0.3),
 
             nn.Linear(128, 64),
             nn.LeakyReLU(0.2),
-            nn.Dropout(0.3),
 
-            nn.Linear(64, 1),  # salida: logits (sin Sigmoid)
+            nn.Linear(64, 1),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # x: (batch_size, data_dim)
-        return self.net(x)  # devuelve logits
+        return self.net(x)  # valores reales (no probabilidades)
