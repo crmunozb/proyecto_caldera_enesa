@@ -36,7 +36,7 @@ st.markdown("""
 # ---------------------------------
 # TÍTULO
 # ---------------------------------
-st.markdown("<h1>🔥 SCADA – Caldera ENESA (Datos CTGAN)</h1>", unsafe_allow_html=True)
+st.markdown("<h1>SCADA – Caldera ENESA (Datos CTGAN)</h1>", unsafe_allow_html=True)
 
 # ---------------------------------
 # CARGAR DATOS
@@ -53,7 +53,7 @@ except:
 
 # Temperatura
 st.markdown("<div class='card'>", unsafe_allow_html=True)
-st.subheader("🌡️ Temperatura de Gases (°C)")
+st.subheader("Temperatura de Gases (°C)")
 st.plotly_chart(px.line(df, y="temperatura_gases_salida_c"), use_container_width=True)
 st.markdown("</div>", unsafe_allow_html=True)
 
@@ -62,19 +62,19 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("<div class='card'>", unsafe_allow_html=True)
-    st.subheader("🧪 Oxígeno (%)")
+    st.subheader("Oxígeno (%)")
     st.plotly_chart(px.line(df, y="oxigeno_porcentaje_base_seca"), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
 with col2:
     st.markdown("<div class='card'>", unsafe_allow_html=True)
-    st.subheader("💧 Humedad (%)")
+    st.subheader("Humedad (%)")
     st.plotly_chart(px.line(df, y="humedad_porcentaje"), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
 # MP
 st.markdown("<div class='card'>", unsafe_allow_html=True)
-st.subheader("🟤 Material Particulado (mg/m³)")
+st.subheader("Material Particulado (mg/m³)")
 st.plotly_chart(px.line(df, y="concentracion_mp_mg_m3"), use_container_width=True)
 st.markdown("</div>", unsafe_allow_html=True)
 
@@ -83,18 +83,18 @@ col3, col4 = st.columns(2)
 
 with col3:
     st.markdown("<div class='card'>", unsafe_allow_html=True)
-    st.subheader("🌪️ Flujo Húmedo (m³/min)")
+    st.subheader("Flujo Húmedo (m³/min)")
     st.plotly_chart(px.line(df, y="flujo_gases_salida_base_humeda_m3_min"), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
 with col4:
     st.markdown("<div class='card'>", unsafe_allow_html=True)
-    st.subheader("💨 Flujo Seco (Nm³/min)")
+    st.subheader("Flujo Seco (Nm³/min)")
     st.plotly_chart(px.line(df, y="flujo_gases_salida_base_seca_nm3_min"), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
 # Presión
 st.markdown("<div class='card'>", unsafe_allow_html=True)
-st.subheader("⚙️ Presión (atm)")
+st.subheader("Presión (atm)")
 st.plotly_chart(px.line(df, y="presion_gases_salida_atm"), use_container_width=True)
 st.markdown("</div>", unsafe_allow_html=True)
