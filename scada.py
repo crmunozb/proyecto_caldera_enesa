@@ -1,9 +1,10 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 import time
 
 # ------------------------------
-# Configuración del SCADA
+# CONFIGURACIÓN
 # ------------------------------
 st.set_page_config(
     page_title="SCADA - Caldera ENESA",
@@ -11,22 +12,12 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ------------------------------
-# Estilos visuales
-# ------------------------------
 st.markdown(
     """
     <style>
         body {
             background-color: #0e1117;
             color: #e1e1e1;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        h1 {
-            font-size: 40px !important;
-        }
-        h2, h3, h4 {
-            font-weight: 500;
         }
         .card {
             padding: 20px;
@@ -40,85 +31,89 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ------------------------------
-# TÍTULO
-# ------------------------------
 st.markdown("<h1>🔥 SCADA – Caldera ENESA (Datos CTGAN)</h1>", unsafe_allow_html=True)
 
-# ------------------------------
-# CONTENEDOR QUE SE ACTUALIZA SUAVEMENTE
-# ------------------------------
+# Contenedor principal que se actualiza sin recargar la página
 placeholder = st.empty()
 
 # ------------------------------
-# LOOP DE ACTUALIZACIÓN (sin refrescar la página)
+# LOOP SUAVE (sin refrescar página)
 # ------------------------------
 while True:
+
     with placeholder.container():
+
         try:
             df = pd.read_csv("stream_data.csv")
         except:
-            st.warning("Esperando datos... El archivo stream_data.csv aún no existe.")
+            st.warning("Esperando datos...")
             time.sleep(5)
             continue
 
-        # ------------------------------
-        # GRÁFICO 1 — Temperatura
-        # ------------------------------
+        # ============================================
+        #  🌡️ Temperatura
+        # ============================================
         st.markdown("<div class='card'>", unsafe_allow_html=True)
-        st.markdown("### 🌡️ Temperatura de Gases (°C)")
-        st.line_chart(df["temperatura_gases_salida_c"])
+        st.subheader("🌡️ Temperatura de Gases (°C)")
+        fig_temp = px.line(df, y="temperatura_gases_salida_c", title="")
+        st.plotly_chart(fig_temp, use_container_width=True, key="chart_temp")
         st.markdown("</div>", unsafe_allow_html=True)
 
-        # ------------------------------
-        # GRÁFICOS 2 — Oxígeno & Humedad
-        # ------------------------------
+        # ============================================
+        #  Oxígeno y Humedad
+        # ============================================
         col1, col2 = st.columns(2)
 
         with col1:
             st.markdown("<div class='card'>", unsafe_allow_html=True)
-            st.markdown("### 🧪 Oxígeno (%)")
-            st.line_chart(df["oxigeno_porcentaje_base_seca"])
+            st.subheader("🧪 Oxígeno (%)")
+            fig_o2 = px.line(df, y="oxigeno_porcentaje_base_seca")
+            st.plotly_chart(fig_o2, use_container_width=True, key="chart_o2")
             st.markdown("</div>", unsafe_allow_html=True)
 
         with col2:
             st.markdown("<div class='card'>", unsafe_allow_html=True)
-            st.markdown("### 💧 Humedad (%)")
-            st.line_chart(df["humedad_porcentaje"])
+            st.subheader("💧 Humedad (%)")
+            fig_hum = px.line(df, y="humedad_porcentaje")
+            st.plotly_chart(fig_hum, use_container_width=True, key="chart_hum")
             st.markdown("</div>", unsafe_allow_html=True)
 
-        # ------------------------------
+        # ============================================
         # MP
-        # ------------------------------
+        # ============================================
         st.markdown("<div class='card'>", unsafe_allow_html=True)
-        st.markdown("### 🟤 Material Particulado (mg/m³)")
-        st.line_chart(df["concentracion_mp_mg_m3"])
+        st.subheader("🟤 Material Particulado (mg/m³)")
+        fig_mp = px.line(df, y="concentracion_mp_mg_m3")
+        st.plotly_chart(fig_mp, use_container_width=True, key="chart_mp")
         st.markdown("</div>", unsafe_allow_html=True)
 
-        # ------------------------------
+        # ============================================
         # Flujos
-        # ------------------------------
+        # ============================================
         col3, col4 = st.columns(2)
 
         with col3:
             st.markdown("<div class='card'>", unsafe_allow_html=True)
-            st.markdown("### 🌪️ Flujo Húmedo (m³/min)")
-            st.line_chart(df["flujo_gases_salida_base_humeda_m3_min"])
+            st.subheader("🌪️ Flujo Húmedo (m³/min)")
+            fig_fh = px.line(df, y="flujo_gases_salida_base_humeda_m3_min")
+            st.plotly_chart(fig_fh, use_container_width=True, key="chart_fh")
             st.markdown("</div>", unsafe_allow_html=True)
 
         with col4:
             st.markdown("<div class='card'>", unsafe_allow_html=True)
-            st.markdown("### 💨 Flujo Seco (Nm³/min)")
-            st.line_chart(df["flujo_gases_salida_base_seca_nm3_min"])
+            st.subheader("💨 Flujo Seco (Nm³/min)")
+            fig_fs = px.line(df, y="flujo_gases_salida_base_seca_nm3_min")
+            st.plotly_chart(fig_fs, use_container_width=True, key="chart_fs")
             st.markdown("</div>", unsafe_allow_html=True)
 
-        # ------------------------------
+        # ============================================
         # Presión
-        # ------------------------------
+        # ============================================
         st.markdown("<div class='card'>", unsafe_allow_html=True)
-        st.markdown("### ⚙️ Presión (atm)")
-        st.line_chart(df["presion_gases_salida_atm"])
+        st.subheader("⚙️ Presión (atm)")
+        fig_pr = px.line(df, y="presion_gases_salida_atm")
+        st.plotly_chart(fig_pr, use_container_width=True, key="chart_pr")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # Actualiza cada 5 segundos, pero SIN refrescar la página
-    time.sleep(5)
+    # Refrescar SOLO los datos, NO recargar página
+    time.sleep(10)
