@@ -7,7 +7,7 @@ El sistema se alimenta de un **simulador de datos en flujo continuo**, el cual e
 
 ---
 
-## 🧩 Objetivos del Proyecto
+## Objetivos del Proyecto
 
 - Implementar un **simulador de datos** basado en el dataset sintético generado mediante CTGAN en la Fase 1.  
 - Desarrollar un **dashboard SCADA en Streamlit** capaz de actualizarse automáticamente.  
@@ -22,7 +22,7 @@ El sistema se alimenta de un **simulador de datos en flujo continuo**, el cual e
 
 ---
 
-## 🛠️ Arquitectura del Sistema
+## Arquitectura del Sistema
 
 ```
 +----------------------+        +----------------------+        +--------------------------+
@@ -37,7 +37,7 @@ El sistema se alimenta de un **simulador de datos en flujo continuo**, el cual e
 
 ---
 
-## 📦 Requisitos
+## Requisitos
 
 - Python 3.9+
 - Librerías necesarias:
@@ -54,7 +54,7 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Ejecución
+## Ejecución
 
 ### 1. Iniciar el simulador
 ```bash
@@ -73,7 +73,7 @@ Los gráficos se actualizan cada 10 segundos.
 
 ---
 
-## 📈 Variables Visualizadas
+## Variables Visualizadas
 
 El SCADA muestra en tiempo real las siguientes variables del proceso:
 
@@ -85,52 +85,53 @@ El SCADA muestra en tiempo real las siguientes variables del proceso:
 - Flujo seco (Nm³/min)
 - Presión (atm)
 
-Todas estas variables se representan mediante gráficos interactivos desarrollados con **Plotly**.
+Estas variables se representan mediante gráficos interactivos desarrollados con **Plotly**.
 
 ---
 
-## 🗂️ Estructura del Repositorio
+## Estructura del Repositorio
 
 ```
 ├── simulador.py          # Simulador de datos en flujo continuo
 ├── scada.py              # Dashboard SCADA en Streamlit
 ├── stream_data.csv       # Archivo actualizado periódicamente por el simulador
 ├── data/                 # Dataset sintético utilizado en la Fase 1
-├── img/                  # Gráficos o capturas exportadas
-└── README.md             # Documentación del proyecto
+├── reports/              # Informes y documentos del proyecto
+└── README.md             # Documentación del repositorio
 ```
 
 ---
 
-## 📊 Capturas del Sistema
+## Capturas del Sistema
 
 Las capturas completas del sistema SCADA, incluyendo visualizaciones de todas las variables operacionales (temperatura, oxígeno, humedad, flujos, material particulado y presión), se encuentran disponibles en el siguiente documento:
 
-📄 **[SCADA - Caldera ENESA.pdf](reports/SCADA%20-%20Caldera%20ENESA.pdf)**
+**[SCADA - Caldera ENESA.pdf](reports/SCADA%20-%20Caldera%20ENESA.pdf)**
 
 Este archivo incluye las imágenes exportadas directamente desde el dashboard desarrollado en Streamlit.
 
+---
 
-## 🔮 Próximos Pasos
+## Próximos Pasos
 
 - Incorporar límites operativos dinámicos con alertas visuales.  
 - Añadir indicadores industriales (gauges, semáforos, barras de estado).  
-- Estudiar integración con sensores reales de la caldera ENESA.  
+- Estudiar la integración con sensores reales de la caldera ENESA.  
 - Desarrollar un módulo para calcular la eficiencia energética del sistema.  
 - Implementar algoritmos de detección temprana de anomalías.  
 - Incorporar modelos predictivos para anticipar el comportamiento de variables críticas.
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Proyecto elaborado con fines académicos para la asignatura *Proyecto Computacional Guiado II*.
 
 ---
 
-## 👤 Autor
+## Autor
 
 **Cristóbal Muñoz Barrios**  
-Proyecto Computacional Guiado II — Ingeniería Civil Informática UdeC  
+Proyecto Computacional Guiado II — Ingeniería Civil Informática  
 Universidad de Concepción  
 Año: 2025
