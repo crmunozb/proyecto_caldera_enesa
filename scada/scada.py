@@ -3,6 +3,9 @@ from streamlit_autorefresh import st_autorefresh
 import pandas as pd
 import plotly.express as px
 import os
+import warnings
+warnings.filterwarnings("ignore")
+
 
 # ---------------------------------
 # CONFIG STREAMLIT

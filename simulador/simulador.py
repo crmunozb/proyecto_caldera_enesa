@@ -2,11 +2,18 @@ import pandas as pd
 import time
 import os
 
-# Ruta al dataset de CTGAN
-DATA_FILE = "../gan/out_ctgan/datos_sinteticos_ctgan.csv"
+# Ruta base del archivo actual (simulador.py)
+BASE = os.path.dirname(os.path.abspath(__file__))
 
-# Archivo donde se irán acumulando los datos en tiempo real
-STREAM_FILE = "stream_data.csv"
+# Ruta correcta al archivo generado por CTGAN
+DATA_FILE = os.path.join(BASE, "..", "gan", "out_ctgan", "datos_sinteticos_ctgan.csv")
+
+# Archivo del stream en el mismo directorio del simulador
+STREAM_FILE = os.path.join(BASE, "stream_data.csv")
+
+# Verificar que el dataset existe
+if not os.path.exists(DATA_FILE):
+    raise FileNotFoundError(f"ERROR: No se encontró el dataset en:\n{DATA_FILE}")
 
 # Cargar datos sintéticos
 df = pd.read_csv(DATA_FILE)
@@ -16,7 +23,7 @@ if os.path.exists(STREAM_FILE):
     os.remove(STREAM_FILE)
 
 print("Simulador en marcha...")
-print(f"Enviando datos cada 10 segundos desde: {DATA_FILE}\n")
+print(f"Enviando datos cada 10 segundos desde:\n{DATA_FILE}\n")
 
 i = 0
 
@@ -30,7 +37,7 @@ while True:
         index=False
     )
 
-    print(f"[OK] Fila {i} agregada al stream_data.csv")
+    print(f"[OK] Fila {i} agregada a stream_data.csv")
 
     i += 1
 
