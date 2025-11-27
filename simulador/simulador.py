@@ -3,7 +3,7 @@ import time
 import os
 
 # Ruta al dataset de CTGAN
-DATA_FILE = "gan/out_ctgan/datos_sinteticos_ctgan.csv"
+DATA_FILE = "../gan/out_ctgan/datos_sinteticos_ctgan.csv"
 
 # Archivo donde se irán acumulando los datos en tiempo real
 STREAM_FILE = "stream_data.csv"
@@ -23,7 +23,6 @@ i = 0
 while True:
     fila = df.iloc[[i]]  # Fila actual
 
-    # Guardar al archivo stream
     fila.to_csv(
         STREAM_FILE,
         mode="a",
@@ -35,10 +34,8 @@ while True:
 
     i += 1
 
-    # Cuando llegue al final, reiniciamos
     if i >= len(df):
         i = 0
         print("\nReiniciando simulación desde el inicio...\n")
 
-    # Esperar 30 segundos
     time.sleep(10)
